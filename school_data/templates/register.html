@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container" >
+        <div class= "spacerss">
+            <h1> Please Register Below</h1>
+            <h3>Once completed you will be redirected to the login page</h3>
+            <h3>After logging in, you will be granted an API token</h3>
+        </div>
+        <form method="POST">
+            {{ userform.hidden_tag() }}
+            <div class="form-group">
+                <fieldset>
+                    {{ userform.name.label }}
+                    {{ userform.name(class = 'form-control', placeholder = "Full Name Here") }}
+                </fieldset>
+                <fieldset>
+                    {{ userform.email.label }}
+                    {{ userform.email(class = 'form-control', placeholder = "Email Here") }}
+                </fieldset>
+                <fieldset>
+                    {{ userform.password.label }}
+                    {{ userform.password(class = 'form-control', placeholder = "Password Here") }}
+                </fieldset>
+                <fieldset>
+                    {{ userform.confirm_pass.label }}
+                    {{ userform.confirm_pass(class = 'form-control', placeholder = "Confirm Your Password") }}
+                </fieldset>
+                {{ userform.submit(class = 'btn btn-success') }}
+            </div>
+        </form>
+    </div>
+{% endblock content %}

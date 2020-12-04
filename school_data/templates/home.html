@@ -1,0 +1,26 @@
+<head>
+<link href="../static/css/cover.css" rel="stylesheet">
+</head>
+
+{% extends 'base.html' %}
+
+{% block content %}
+<body class="text-center">
+
+
+      <main role="main" class="inner cover">
+        <h1 class="cover-heading">Illinois Data Tool.</h1>
+        <p class="lead">The School Data Tool captures data from the Illinois Data Library and makes it accessible it in a friendly way.</p>
+        <p class="lead">
+          <a href="{{url_for('register') }} class="btn btn-lg btn-secondary">Register</a>
+        </p>
+      </main>
+
+      <footer class="mastfoot mt-auto">
+        <div class="inner">
+          <p>Chicago Codes Project by <a href="https://github.com/Terlam">Terrell</a>, add me on <a href="https://linkedin.com/in/terrellmckinney">LinkedIn</a>.</p>
+        </div>
+      </footer>
+    </div>
+
+{% endblock content %}
