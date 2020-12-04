@@ -14,7 +14,7 @@ import jwt
 # Import for Flask Login functions - login_required
 # login_user, curent_user, logout_user
 from flask_login import login_required, login_user, current_user, logout_user
-
+from school_data.token_validation import token_required
 
 # Home Route
 @app.route('/')
@@ -86,7 +86,7 @@ def refresh_key():
 
 # Don't need to Post schools
 @app.route('/school/create', methods = ['POST'])
-# @token_required
+@token_required
 def create_school():
     school.rcdts = request.json['rcdts']
     school.group_type = request.json['group_type']
@@ -143,7 +143,7 @@ def create_school():
 
 # Get School Route
 @app.route('/schools', methods = ['GET'])
-# @token_required
+@token_required
 def get_schools(current_user_token):
     schools = School.query.all()
     return jsonify(schools_schema.dump(schools))
@@ -151,17 +151,17 @@ def get_schools(current_user_token):
 
 
 
-@app.route('/schools/<rctds>', methods = ['GET'])
-# @token_required
+@app.route('/schools/<id>', methods = ['GET'])
+@token_required
 def get_school(current_user_token,id):
-    patient = Patient.query.get(id)
-    results = patient_schema.dump(patient)
+    school = School.query.get(id)
+    results = school_schema.dump(school)
     return jsonify(results)
 
-@app.route('/schools/<rctds>', methods = ['POST', 'PUT'])
-# @token_required
+@app.route('/schools/<id>', methods = ['POST', 'PUT'])
+@token_required
 def update_school(current_user_token,id):
-    school = School.query.get(rctds)
+    school = School.query.get(id)
     
     school.group_type = request.json['group_type']
     school.school_name = request.json['school_name']
@@ -216,8 +216,8 @@ def update_school(current_user_token,id):
     return school_schema.jsonify(school)
 
 # Don't Need to Delete Schools
-@app.route('/schools/delete/<rctds>', methods = ['DELETE'])
-# @token_required
+@app.route('/schools/delete/<id>', methods = ['DELETE'])
+@token_required
 def delete_schools(current_user_token,id):
     school = School.query.get(rctds)
     db.session.delete(school)

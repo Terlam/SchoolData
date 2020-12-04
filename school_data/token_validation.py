@@ -1,9 +1,9 @@
 from functools import wraps
 from flask import request, jsonify
 
-from flask_api import app
+from school_data import app
 
-from flask_api.models import User
+from school_data.models import User
 
 import jwt
 
@@ -14,7 +14,7 @@ def token_required(our_flask_function):
         token = None
 
         if 'x-access-token' in request.headers:
-            token = request.headers['x-access-token']
+            token = request.headers['x-access-token'].split(" ")[1]
         if not token:
             return jsonify({'message': 'Token is missing!'}),401
 
@@ -31,3 +31,4 @@ def token_required(our_flask_function):
         return our_flask_function(current_user_token, *args,**kwargs)
 
     return decorated
+    
