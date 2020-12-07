@@ -21,9 +21,10 @@ from school_data.token_validation import token_required
 def home():
     return render_template('home.html')
 
-@app.route('/index')
-def index():
-    return render_template('index.html')
+# Documentation Route
+@app.route('/documentation')
+def documentation():
+    return render_template('documentation.html')
 
 
 #Register Route
@@ -81,7 +82,7 @@ def refresh_key():
     refresh_key = {'refreshToken': jwt.encode({'public_id':current_user.id, 'email':current_user.email}, app.config['SECRET_KEY'])}
     temp = refresh_key.get('refreshToken')
     actual_token = temp.decode('utf-8')
-    return render_template('token_refresh.html', actual_token = actual_token)
+    return render_template('token_refresh.html', current_user_token = actual_token)
 
 
 # Don't need to Post schools
