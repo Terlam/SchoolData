@@ -1,9 +1,11 @@
 <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
     <header class="masthead mb-auto">
       <div class="inner">
-        <h3 class="masthead-brand"><a href="{{ url_for('home') }}" School Data</h3>
+        <h3 class="masthead-brand"><a href="{{ url_for('home') }}">
+          <img src="../static/images/school_data_logo.png" width="" height="50" class="d-inline-block align-bottom" alt="IL School Data">
+          </a></h3>
         <nav class="nav nav-masthead justify-content-center">
-          <a class="nav-link active" href="{{ url_for('documentation') }}">Documentation</a>
+          <a class="nav-link active" href="{{ url_for('documentation') }}">Docs</a>
           <a class="nav-link active" href="{{ url_for('register') }}">Register</a>
           <a class="nav-link active" href="{{ url_for('login') }}">Login</a>
           <a class="nav-link" href="{{ url_for('logout') }}">Logout</a>
